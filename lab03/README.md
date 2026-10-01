@@ -2,51 +2,60 @@
 
 ## GenAI Used
 
-I used ChatGPT by OpenAI to help me understand the lab instructions and check my Bash scripts.
+I used ChatGPT during this lab to ask questions when I was not sure about certain steps, get advice on parts of the Bash code and check if my scripts were working right.
 
 ## Prompts Used
 
-Some of the questions I asked ChatGPT were:
+Some examples of questions I asked ChatGPT were:
 
-- "Let's start from the start with the first thing to do."
 - "Do I have to make a copy?"
 - "What am I doing with this?"
-- "Am I deleting everything from if [ -z $1 ]; then and down?"
-- I also asked ChatGPT to check if my Exercise 1, Exercise 2 and Exercise 3 scripts were working correctly.
+
 
 ## Code Changes
 
-For Exercise 1, I modified the script so that it takes a number from the command line and compares it with the number of running processes.
+I worked from the original Bash template provided and used some suggestions from ChatGPT when making changes for each exercise.
 
-I used:
+**Exercise 1:**
 
-    ct=$(ps -ef | wc -l)
+I used the original process counting command and added a comparison to check whether the number of processes exceeded the number entered by the user.
 
-I used an if statement with `-gt` to check if the number of processes was greater than the number entered.
+An example of the code added was:
 
-For Exercise 2, I changed the output so that it was written to a log file using:
+    if [ "$ct" -gt "$1" ]; then
+        echo "Maximum number of processes exceeded"
+    else
+        echo "The maximum number of processes NOT exceeded"
+    fi
 
-    >> process_log.txt
+**Exercise 2:**
 
-I also added the date and time using:
+I modified the output so the result would be saved to a log file with a timestamp instead of just displaying the final message on screen.
 
-    $(date)
+An example of the modified code was:
 
-For Exercise 3, I added a second command-line parameter so the user could choose between displaying the result on the screen or writing it to the log file.
+    echo "$(date): Maximum number of processes exceeded" >> process_log.txt
 
-The options I used were:
+**Exercise 3:**
 
-    screen
-    file
+I added a second parameter to allow the user to choose between displaying the result on screen or writing it to a file.
+
+An example of the added conditions was:
+
+    if [ "$2" = "screen" ]; then
+
+    elif [ "$2" = "file" ]; then
+
+The changes were made with guidance from ChatGPT. I entered the suggested code into my scripts and tested each exercise in my Linux VM. I did not need to make further corrections to the suggested snippets after testing as they produced the same results.
 
 ## Reflection
 
-I made sure I understood the scripts by entering the commands myself and testing them with different values.
+I made sure I understood the changes by entering the code myself and testing each script with different inputs.
 
-For Exercise 1, I tested the script with 15 and 9999 to check both possible results.
+For Exercise 1 - I tested the script with 15 and 9999 to check both possible results.
 
-For Exercise 2, I checked the log file to make sure new results were appended instead of replacing the previous results.
+For Exercise 2 - I checked the log file to make sure the results were being appended right instead of replacing the previous results.
 
-For Exercise 3, I tested both the screen and file options.
+For Exercise 3 - I tested both the screen and file options to make sure they worked.
 
-Using ChatGPT helped me understand Bash if statements, command-line parameters, process counting, redirect append and how to test Bash scripts.
+Overall the lab helped me better understand Bash scripting, if statements, command line parameters, process counting and appending.
